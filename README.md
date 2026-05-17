@@ -6,7 +6,6 @@
 
 **Vortex Resonance Implosion Lattice — Key Encapsulation Mechanism**
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/VRIL-LABS/vril-kem/blob/main/LICENSE)
 [![Security: Post-Quantum](https://img.shields.io/badge/Security-Post--Quantum-blueviolet)](#security-analysis)
 [![Level: Level 5+](https://img.shields.io/badge/Security%20Level-Level%205%2B-brightgreen)](#parameter-sets)
 [![Language: C99](https://img.shields.io/badge/Language-C99-blue)](#quick-start)
@@ -236,7 +235,7 @@ vril-kem/
 ├── dist/                   Distribution assets and validation reports
 ├── docs/                   Specification, whitepaper, parameter family
 ├── CHANGELOG.md
-└── LICENSE                 MIT
+└── LICENSE                 VRIL LABS Open Source License v1.0
 ```
 
 ★ VRIL-novel constructions absent from all existing post-quantum KEMs.
