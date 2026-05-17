@@ -37,7 +37,7 @@ VRIL-KEM introduces **three novel cryptographic constructions** absent from all 
 
 ## Parameter Sets
 
-Three stable parameter sets ship in v1.0, covering NIST Levels 3 through 5+:
+Three stable parameter sets ship in v1.2, covering NIST Levels 3 through 5+:
 
 | Designator | N | k | Security | Public Key | Secret Key | Ciphertext | Suite ID |
 |---|---|---|---|---|---|---|---|
@@ -142,7 +142,7 @@ ssDec, _ := ctx.Decapsulate(sk, ct)
 
 Every release ships pre-built static libraries for Linux x64, Linux ARM64, and macOS:
 
-### v1.0-rc1 — Available Now
+### v1.2-rc1 — Available Now
 
 **Naming convention:** `vril-kem-<variant>-<backend>-<os>-<version>.tar.gz`
 
