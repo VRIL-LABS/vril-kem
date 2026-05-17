@@ -138,7 +138,7 @@ CT behaviors verified by code inspection:
 - `kem_dec_ct.c`: constant-time decapsulation with implicit rejection
 
 Note: For variants 1024-3 and 2048-5, the CT backend emits a documented
-placeholder (`NOT_IN_V1.2`) — this is expected behavior per the release
+placeholder (`NOT_IN_V1.0`) — this is expected behavior per the release
 workflow and v1.2 scope.
 
 ---
