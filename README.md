@@ -283,7 +283,8 @@ Issues, security reports, and pull requests are welcome at [github.com/VRIL-LABS
 
 ## License
 
-MIT License — see [LICENSE](LICENSE).
+*Copyright (c) 2026 VLABS, LLC. All rights reserved.* <br>
+*[VRIL LABS Open Source License v1.0](https://github.com/VRIL-LABS/vril-zip/blob/main/LICENSE) — https://vril.li/license*.
 
 ---
 
