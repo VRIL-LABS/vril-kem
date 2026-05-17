@@ -215,33 +215,6 @@ NIST Level 5 targets ~256-bit quantum security, equivalent to AES-256. VRIL-KEM-
 
 ---
 
-## Repository Structure
-
-```
-vril-kem/
-├── ref/                    Reference implementation (C99)
-│   ├── api.h               Public KEM API (NIST PQC compatible)
-│   ├── kem.c/h             IND-CCA2 KEM: KeyGen / Encaps / Decaps + OHC
-│   ├── indcpa.c/h          IND-CPA encryption layer + CVKDF
-│   ├── hi_sample.c/h       HI-Gaussian noise sampler ★
-│   ├── cvkdf.c/h           Centripetal Vortex KDF ★
-│   ├── poly.c/h            Polynomial arithmetic in R_q
-│   ├── ntt.c/h             N-point NTT over Z_12289
-│   └── Makefile
-├── avx2/                   AVX2 SIMD-optimized implementation
-├── ct/                     Constant-time masked implementation
-├── mem/                    Memory-optimized variant
-├── vril-mesh/              Go bindings (hybrid/adaptive suites)
-├── dist/                   Distribution assets and validation reports
-├── docs/                   Specification, whitepaper, parameter family
-├── CHANGELOG.md
-└── LICENSE                 VRIL LABS Open Source License v1.0
-```
-
-★ VRIL-novel constructions absent from all existing post-quantum KEMs.
-
----
-
 ## Comparison with NIST PQC Candidates
 
 | Property | VRIL-KEM-4096-7 | ML-KEM-1024 (KYBER) | FrodoKEM-1344 | Classic McEliece |
