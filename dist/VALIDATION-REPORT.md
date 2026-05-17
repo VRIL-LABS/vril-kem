@@ -204,5 +204,3 @@ SIMD:     AVX2, AVX-512, BMI2, POPCNT confirmed via /proc/cpuinfo
 All stable parameter sets (1024-3, 2048-5, 4096-7) pass the complete test
 suite across all in-scope backends (ref, avx2, ct, mem). No failures, no
 assertion errors, no memory issues observed during testing.
-
-The release is ready for public distribution via `VRIL-LABS/vril-kem`.
