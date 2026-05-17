@@ -260,18 +260,6 @@ VRIL-KEM trades key/ciphertext size for a significantly higher security margin a
 
 ---
 
-## Documentation
-
-| Document | Description |
-|---|---|
-| [VRIL-KEM-Complete-Specification.md](docs/VRIL-KEM-Complete-Specification.md) | Full technical specification (algorithms, parameters, security proofs) |
-| [VRIL-KEM-Parameter-Family.md](docs/VRIL-KEM-Parameter-Family.md) | Detailed parameter set rationale and arithmetic scaffolding |
-| [VRIL-KEM-Whitepaper.pdf](docs/VRIL-KEM-Whitepaper.pdf) | Academic whitepaper |
-| [CHANGELOG.md](CHANGELOG.md) | Version history |
-| [docs/future-work/](docs/future-work/) | Research roadmap (EasyCrypt proofs, TLS 1.3, FPGA/ASIC) |
-
----
-
 ## Contributing
 
 Issues, security reports, and pull requests are welcome at [github.com/VRIL-LABS/vril-kem](https://github.com/VRIL-LABS/vril-kem).
