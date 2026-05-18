@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://github.com/VrilLabs/kem/blob/main/docs/header.png" alt="VRIL-KEM Header Image" width="100%" />
+<img src="header.png" alt="VRIL-KEM Header Image" width="100%" />
 
 # VRIL-KEM
 
