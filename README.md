@@ -321,7 +321,7 @@ Issues, security reports, and pull requests are welcome at [github.com/VRIL-LABS
 
 ## License
 
-MIT License — see [LICENSE](LICENSE).
+GNU Affero General Public License 3.0 — see [LICENSE](LICENSE).
 
 ---
 
