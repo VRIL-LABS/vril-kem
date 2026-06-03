@@ -1,15 +1,16 @@
 <div align="center">
 
-<img src="header.png" alt="VRIL-KEM Header Image" width="100%" />
+<img src="https://github.com/VrilLabs/kem/blob/main/docs/header.png" alt="VRIL-KEM Header Image" width="100%" />
 
 # VRIL-KEM
 
 **Vortex Resonance Implosion Lattice — Key Encapsulation Mechanism**
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/VRIL-LABS/vril-kem/blob/main/LICENSE)
 [![Security: Post-Quantum](https://img.shields.io/badge/Security-Post--Quantum-blueviolet)](#security-analysis)
 [![Level: Level 5+](https://img.shields.io/badge/Security%20Level-Level%205%2B-brightgreen)](#parameter-sets)
 [![Language: C99](https://img.shields.io/badge/Language-C99-blue)](#quick-start)
-[![Status: v1.2-rc1](https://img.shields.io/badge/Status-v1.2--rc1-orange)](#release-artifacts)
+[![Status: v1.0-rc1](https://img.shields.io/badge/Status-v1.0--rc1-orange)](#release-artifacts)
 [![Platforms](https://img.shields.io/badge/Platforms-Linux%20%7C%20macOS%20%7C%20ARM64-lightgrey)](#release-artifacts)
 
 *A Schauberger centripetal-physics-inspired lattice-based KEM achieving Level 5+ post-quantum security.*
@@ -36,7 +37,7 @@ VRIL-KEM introduces **three novel cryptographic constructions** absent from all 
 
 ## Parameter Sets
 
-Three stable parameter sets ship in v1.2, covering NIST Levels 3 through 5+:
+Three stable parameter sets ship in v1.0, covering NIST Levels 3 through 5+:
 
 | Designator | N | k | Security | Public Key | Secret Key | Ciphertext | Suite ID |
 |---|---|---|---|---|---|---|---|
@@ -141,7 +142,7 @@ ssDec, _ := ctx.Decapsulate(sk, ct)
 
 Every release ships pre-built static libraries for Linux x64, Linux ARM64, and macOS:
 
-### v1.2-rc1 — Available Now
+### v1.0-rc1 — Available Now
 
 **Naming convention:** `vril-kem-<variant>-<backend>-<os>-<version>.tar.gz`
 
@@ -215,6 +216,33 @@ NIST Level 5 targets ~256-bit quantum security, equivalent to AES-256. VRIL-KEM-
 
 ---
 
+## Repository Structure
+
+```
+vril-kem/
+├── ref/                    Reference implementation (C99)
+│   ├── api.h               Public KEM API (NIST PQC compatible)
+│   ├── kem.c/h             IND-CCA2 KEM: KeyGen / Encaps / Decaps + OHC
+│   ├── indcpa.c/h          IND-CPA encryption layer + CVKDF
+│   ├── hi_sample.c/h       HI-Gaussian noise sampler ★
+│   ├── cvkdf.c/h           Centripetal Vortex KDF ★
+│   ├── poly.c/h            Polynomial arithmetic in R_q
+│   ├── ntt.c/h             N-point NTT over Z_12289
+│   └── Makefile
+├── avx2/                   AVX2 SIMD-optimized implementation
+├── ct/                     Constant-time masked implementation
+├── mem/                    Memory-optimized variant
+├── vril-mesh/              Go bindings (hybrid/adaptive suites)
+├── dist/                   Distribution assets and validation reports
+├── docs/                   Specification, whitepaper, parameter family
+├── CHANGELOG.md
+└── LICENSE                 MIT
+```
+
+★ VRIL-novel constructions absent from all existing post-quantum KEMs.
+
+---
+
 ## Comparison with NIST PQC Candidates
 
 | Property | VRIL-KEM-4096-7 | ML-KEM-1024 (KYBER) | FrodoKEM-1344 | Classic McEliece |
@@ -233,6 +261,18 @@ VRIL-KEM trades key/ciphertext size for a significantly higher security margin a
 
 ---
 
+## Documentation
+
+| Document | Description |
+|---|---|
+| [VRIL-KEM-Complete-Specification.md](docs/VRIL-KEM-Complete-Specification.md) | Full technical specification (algorithms, parameters, security proofs) |
+| [VRIL-KEM-Parameter-Family.md](docs/VRIL-KEM-Parameter-Family.md) | Detailed parameter set rationale and arithmetic scaffolding |
+| [VRIL-KEM-Whitepaper.pdf](docs/VRIL-KEM-Whitepaper.pdf) | Academic whitepaper |
+| [CHANGELOG.md](CHANGELOG.md) | Version history |
+| [docs/future-work/](docs/future-work/) | Research roadmap (EasyCrypt proofs, TLS 1.3, FPGA/ASIC) |
+
+---
+
 ## Contributing
 
 Issues, security reports, and pull requests are welcome at [github.com/VRIL-LABS/vril-kem](https://github.com/VRIL-LABS/vril-kem).
@@ -243,8 +283,7 @@ Issues, security reports, and pull requests are welcome at [github.com/VRIL-LABS
 
 ## License
 
-*Copyright (c) 2026 VLABS, LLC. All rights reserved.* <br>
-*[VRIL LABS Open Source License v1.0](https://github.com/VRIL-LABS/vril-zip/blob/main/LICENSE) — https://vril.li/license*.
+MIT License — see [LICENSE](LICENSE).
 
 ---
 
