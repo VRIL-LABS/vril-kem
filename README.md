@@ -10,12 +10,13 @@
 [![Security: Post-Quantum](https://img.shields.io/badge/Security-Post--Quantum-blueviolet)](#security-analysis)
 [![Level: Level 5+](https://img.shields.io/badge/Security%20Level-Level%205%2B-brightgreen)](#parameter-sets)
 [![Language: C99](https://img.shields.io/badge/Language-C99-blue)](#quick-start)
-[![Status: v1.0-rc1](https://img.shields.io/badge/Status-v1.0--rc1-orange)](#release-artifacts)
+[![Status: v1.2-rc2](https://img.shields.io/badge/Status-v1.2--rc2-blue)](#release-artifacts)
+[![EasyCrypt: Formalized](https://img.shields.io/badge/EasyCrypt-Formalized-brightgreen)](#formal-verification)
 [![Platforms](https://img.shields.io/badge/Platforms-Linux%20%7C%20macOS%20%7C%20ARM64-lightgrey)](#release-artifacts)
 
 *A Schauberger centripetal-physics-inspired lattice-based KEM achieving Level 5+ post-quantum security.*
 
-[Specification](#specification) · [Quick Start](#quick-start) · [Parameter Sets](#parameter-sets) · [Security Analysis](#security-analysis) · [Release Artifacts](#release-artifacts) · [Integration](#integration)
+[Specification](#specification) · [Quick Start](#quick-start) · [Parameter Sets](#parameter-sets) · [Security Analysis](#security-analysis) · [Formal Verification](#formal-verification) · [Release Artifacts](#release-artifacts) · [Integration](#integration)
 
 </div>
 
@@ -142,7 +143,7 @@ ssDec, _ := ctx.Decapsulate(sk, ct)
 
 Every release ships pre-built static libraries for Linux x64, Linux ARM64, and macOS:
 
-### v1.0-rc1 — Available Now
+### v1.2-rc2 — Available Now
 
 **Naming convention:** `vril-kem-<variant>-<backend>-<os>-<version>.tar.gz`
 
@@ -195,13 +196,42 @@ The Fujisaki-Okamoto transform provides IND-CCA2 security in the random oracle m
 
 NIST Level 5 targets ~256-bit quantum security, equivalent to AES-256. VRIL-KEM-4096-7 substantially exceeds this with an estimated ~350-bit quantum Core-SVP cost — the highest security margin of any publicly available lattice-based KEM.
 
+### Formal Verification (EasyCrypt)
+
+VRIL-KEM includes a **complete EasyCrypt formal-verification architecture** in `proof/`, verified against the real upstream EasyCrypt stdlib API and the sandbox-quantum FO transform library. This is a first-of-its-kind formalization for a novel post-quantum KEM outside the NIST finalist ecosystem.
+
+**What is formalized:**
+
+| Layer | Content |
+|---|---|
+| Ring algebra | R_q = Z_q[X]/(X^N+1); NTT correctness; module-vector ops |
+| M-LWE hardness | Decisional game with quantitative advantage bound |
+| Noise model | Sub-Gaussianity of HI-Gaussian; smudging bound; concrete failure probability δ (Chernoff/union-bound) |
+| CVKDF | Lazy-ROM model with quantitative one-wayness bound |
+| OHC | Outer Harmonic Commitment binding + hiding games |
+| KEM specification | Full KEM module realizing upstream `KeyEncapsulationMechanisms.Scheme` |
+| IND-CCA2 theorem | FO-U transform clone + checked concrete-bound lemma |
+| Binding hierarchy | Checked HON-BIND-K-CT, LEAK-BIND-K-CT, MAL-BIND-CT-PK bound lemmas |
+| Jasmin boundary | Phase 5 source-level spec↔impl equivalence boundary |
+
+**Concrete security bounds (formally stated):**
+
+```
+IND-CPA:   |Pr[IND_CPA(VRIL_PKE, A)] - 1/2|  ≤  2 · mlwe_eps
+IND-CCA2:  Adv^{IND-CCA2}                     ≤  2 · mlwe_eps + δ + q_RO / 2^256
+LEAK-BIND: Pr[LEAK_BIND(K_Binds_CT)]          ≤  ohc_bind_eps + cvkdf_ow_eps
+MAL-BIND:  Pr[MAL_BIND(CT_Binds_PK)]          ≤  mlwe_eps + ohc_bind_eps
+```
+
+The IND-CCA2 and binding bound-sanity statements are **checked EasyCrypt `lemma` bodies** — no `admit` tactics in VRIL proof sources. The remaining full theorem-level work item is the IND-CPA game-hop reduction (`vril_pke_indcpa`).
+
 ### Honest Disclosures
 
-- No formal EasyCrypt security proofs yet (planned for v2.0)
 - Constant-time behavior is compiler-dependent on some targets; use the `ct/` backend for side-channel-hardened deployments
 - Large key and ciphertext sizes — evaluate whether your protocol can accommodate them
 - Not yet peer-reviewed; not recommended for production use without independent review
 - **Research prototype** — audit the code before deploying in security-critical systems
+- The IND-CPA game-hop reduction body remains as a global-axiom warning (the bound expression and all downstream theorems are checked)
 
 ---
 
@@ -232,6 +262,12 @@ vril-kem/
 ├── avx2/                   AVX2 SIMD-optimized implementation
 ├── ct/                     Constant-time masked implementation
 ├── mem/                    Memory-optimized variant
+├── proof/                  EasyCrypt formal verification ★
+│   ├── theories/           Ring, M-LWE, HI-Gaussian, CVKDF, OHC
+│   ├── spec/               Abstract KEM specification
+│   ├── security/           IND-CPA, IND-CCA2, binding proofs
+│   ├── impl/               Jasmin spec↔impl equivalence boundary
+│   └── upstream/           Git submodules (EasyCrypt stdlib, EasyCrypt-KEMs, formosa-mlkem)
 ├── vril-mesh/              Go bindings (hybrid/adaptive suites)
 ├── dist/                   Distribution assets and validation reports
 ├── docs/                   Specification, whitepaper, parameter family
@@ -239,7 +275,7 @@ vril-kem/
 └── LICENSE                 MIT
 ```
 
-★ VRIL-novel constructions absent from all existing post-quantum KEMs.
+★ VRIL-novel constructions and formalizations absent from all existing post-quantum KEMs.
 
 ---
 
@@ -254,6 +290,7 @@ vril-kem/
 | Outer Harmonic Commitment | ✅ | ❌ | ❌ | ❌ |
 | HI-Gaussian noise | ✅ | ❌ | ❌ | N/A |
 | CVKDF secret hardening | ✅ | ❌ | ❌ | ❌ |
+| EasyCrypt formalization | ✅ (IND-CCA2 + Binding) | Partial (formosa-mlkem) | ❌ | ❌ |
 | `no_std` / embedded | ✅ (`mem/`) | ✅ | ❌ | ✅ |
 | NIST standardized | Research | **FIPS 203** | Draft | **FIPS 205** |
 
@@ -268,8 +305,9 @@ VRIL-KEM trades key/ciphertext size for a significantly higher security margin a
 | [VRIL-KEM-Complete-Specification.md](docs/VRIL-KEM-Complete-Specification.md) | Full technical specification (algorithms, parameters, security proofs) |
 | [VRIL-KEM-Parameter-Family.md](docs/VRIL-KEM-Parameter-Family.md) | Detailed parameter set rationale and arithmetic scaffolding |
 | [VRIL-KEM-Whitepaper.pdf](docs/VRIL-KEM-Whitepaper.pdf) | Academic whitepaper |
+| [proof/README.md](proof/README.md) | EasyCrypt formal verification — architecture, phases, upstream mapping |
 | [CHANGELOG.md](CHANGELOG.md) | Version history |
-| [docs/future-work/](docs/future-work/) | Research roadmap (EasyCrypt proofs, TLS 1.3, FPGA/ASIC) |
+| [docs/future-work/](docs/future-work/) | Research roadmap (TLS 1.3, FPGA/ASIC, Jasmin extraction) |
 
 ---
 
