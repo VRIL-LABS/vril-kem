@@ -6,21 +6,13 @@
 
 **Vortex Resonance Implosion Lattice — Key Encapsulation Mechanism**
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/VRIL-LABS/vril-kem/blob/main/LICENSE)
-[![Security: Post-Quantum](https://img.shields.io/badge/Security-Post--Quantum-blueviolet)](#security-analysis)
-[![Level: Level 5+](https://img.shields.io/badge/Security%20Level-Level%205%2B-brightgreen)](#parameter-sets)
-[![Language: C99](https://img.shields.io/badge/Language-C99-blue)](#quick-start)
-[![Status: v1.2-rc2](https://img.shields.io/badge/Status-v1.2--rc2-blue)](#release-artifacts)
-[![EasyCrypt: Formalized](https://img.shields.io/badge/EasyCrypt-Formalized-brightgreen)](#formal-verification)
-[![Platforms](https://img.shields.io/badge/Platforms-Linux%20%7C%20macOS%20%7C%20ARM64-lightgrey)](#release-artifacts)
+[![License: GNU](https://img.shields.io/badge/License-GNU-green.svg)](https://github.com/VRIL-LABS/vril-kem/blob/main/LICENSE) [![Security: Post-Quantum](https://img.shields.io/badge/Security-Post--Quantum-blueviolet)](#security-analysis) [![Level: Level 5+](https://img.shields.io/badge/Security%20Level-Level%205%2B-brightgreen)](#parameter-sets) [![Language: C99](https://img.shields.io/badge/Language-C99-blue)](#quick-start) [![Status: v1.2-rc2](https://img.shields.io/badge/Status-v1.2--rc2-blue)](#release-artifacts) [![EasyCrypt: Formalized](https://img.shields.io/badge/EasyCrypt-Formalized-brightgreen)](#formal-verification) [![Platforms](https://img.shields.io/badge/Platforms-Linux%20%7C%20macOS%20%7C%20ARM64-lightgrey)](#release-artifacts)
 
 *A Schauberger centripetal-physics-inspired lattice-based KEM achieving Level 5+ post-quantum security.*
 
 [Specification](#specification) · [Quick Start](#quick-start) · [Parameter Sets](#parameter-sets) · [Security Analysis](#security-analysis) · [Formal Verification](#formal-verification) · [Release Artifacts](#release-artifacts) · [Integration](#integration)
 
 </div>
-
----
 
 ## What is VRIL-KEM?
 
@@ -38,7 +30,7 @@ VRIL-KEM introduces **three novel cryptographic constructions** absent from all 
 
 ## Parameter Sets
 
-Three stable parameter sets ship in v1.0, covering NIST Levels 3 through 5+:
+Three stable parameter sets ship in v1.2, covering NIST Levels 3 through 5+:
 
 | Designator | N | k | Security | Public Key | Secret Key | Ciphertext | Suite ID |
 |---|---|---|---|---|---|---|---|
