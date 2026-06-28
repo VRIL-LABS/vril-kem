@@ -16,7 +16,9 @@
 
 ## What is VRIL-KEM?
 
-VRIL-KEM is a post-quantum Key Encapsulation Mechanism (KEM) built on Module Learning With Errors (M-LWE). It provides a drop-in replacement for classical key exchange in any TLS, SSH, or application-layer protocol — protecting encrypted communications against both classical and quantum adversaries.
+VRIL-KEM is a post-quantum Key Encapsulation Mechanism (KEM) built on Module Learning With Errors (M-LWE). It provides a drop-in replacement for classical key exchange in any TLS, SSH, or application-layer protocol — protecting encrypted communications against both classical and quantum adversaries. 
+
+At the time of writing, VRIL-KEM-4096-7 provides ***the highest security margin of any publicly available lattice-based KEM*** with an estimated ~350-bit quantum Core-SVP cost. The EasyCrypt proof represents a ***first-of-its-kind formalization for a novel post-quantum KEM*** outside the NIST finalist ecosystem.
 
 VRIL-KEM introduces **three novel cryptographic constructions** absent from all existing post-quantum KEMs:
 
