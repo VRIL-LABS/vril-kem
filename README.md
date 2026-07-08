@@ -10,7 +10,7 @@
 
 *A Schauberger centripetal-physics-inspired lattice-based KEM achieving Level 5+ post-quantum security.*
 
-[Specification](#specification) · [Quick Start](#quick-start) · [Parameter Sets](#parameter-sets) · [Security Analysis](#security-analysis) · [Formal Verification](#formal-verification) · [Release Artifacts](#release-artifacts) · [Integration](#integration)
+[Specification](#specification) · [Quick Start](#quick-start) · [Parameter Sets](#parameter-sets) · [Security Analysis](#security-analysis) · [Formal Verification](#formal-verification) · [Release Artifacts](#release-artifacts) · [Integration](#integration) · [Download](https://github.com/VRIL-LABS/vril-kem/releases)  
 
 </div>
 
@@ -240,39 +240,6 @@ The IND-CCA2 and binding bound-sanity statements are **checked EasyCrypt `lemma`
 
 ---
 
-## Repository Structure
-
-```
-vril-kem/
-├── ref/                    Reference implementation (C99)
-│   ├── api.h               Public KEM API (NIST PQC compatible)
-│   ├── kem.c/h             IND-CCA2 KEM: KeyGen / Encaps / Decaps + OHC
-│   ├── indcpa.c/h          IND-CPA encryption layer + CVKDF
-│   ├── hi_sample.c/h       HI-Gaussian noise sampler ★
-│   ├── cvkdf.c/h           Centripetal Vortex KDF ★
-│   ├── poly.c/h            Polynomial arithmetic in R_q
-│   ├── ntt.c/h             N-point NTT over Z_12289
-│   └── Makefile
-├── avx2/                   AVX2 SIMD-optimized implementation
-├── ct/                     Constant-time masked implementation
-├── mem/                    Memory-optimized variant
-├── proof/                  EasyCrypt formal verification ★
-│   ├── theories/           Ring, M-LWE, HI-Gaussian, CVKDF, OHC
-│   ├── spec/               Abstract KEM specification
-│   ├── security/           IND-CPA, IND-CCA2, binding proofs
-│   ├── impl/               Jasmin spec↔impl equivalence boundary
-│   └── upstream/           Git submodules (EasyCrypt stdlib, EasyCrypt-KEMs, formosa-mlkem)
-├── vril-mesh/              Go bindings (hybrid/adaptive suites)
-├── dist/                   Distribution assets and validation reports
-├── docs/                   Specification, whitepaper, parameter family
-├── CHANGELOG.md
-└── LICENSE                 MIT
-```
-
-★ VRIL-novel constructions and formalizations absent from all existing post-quantum KEMs.
-
----
-
 ## Comparison with NIST PQC Candidates
 
 | Property | VRIL-KEM-4096-7 | ML-KEM-1024 (KYBER) | FrodoKEM-1344 | Classic McEliece |
@@ -289,19 +256,6 @@ vril-kem/
 | NIST standardized | Research | **FIPS 203** | Draft | **FIPS 205** |
 
 VRIL-KEM trades key/ciphertext size for a significantly higher security margin and novel algorithmic defenses. For bandwidth-constrained protocols, VRIL-KEM-1024-3 offers a competitive profile against ML-KEM-768.
-
----
-
-## Documentation
-
-| Document | Description |
-|---|---|
-| [VRIL-KEM-Complete-Specification.md](docs/VRIL-KEM-Complete-Specification.md) | Full technical specification (algorithms, parameters, security proofs) |
-| [VRIL-KEM-Parameter-Family.md](docs/VRIL-KEM-Parameter-Family.md) | Detailed parameter set rationale and arithmetic scaffolding |
-| [VRIL-KEM-Whitepaper.pdf](docs/VRIL-KEM-Whitepaper.pdf) | Academic whitepaper |
-| [proof/README.md](proof/README.md) | EasyCrypt formal verification — architecture, phases, upstream mapping |
-| [CHANGELOG.md](CHANGELOG.md) | Version history |
-| [docs/future-work/](docs/future-work/) | Research roadmap (TLS 1.3, FPGA/ASIC, Jasmin extraction) |
 
 ---
 
